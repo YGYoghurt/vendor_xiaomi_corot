@@ -1,0 +1,11 @@
+on property:ro.vendor.display.iris_x7.support=true && property:ro.boot.hwc=CN
+    write /proc/sys/kernel/firmware_config/force_sysfs_fallback 1
+    mkdir /mnt/vendor/iris 0771 system system
+
+service vendor.pixelworks.hardware.feature /odm/bin/hw/vendor.pixelworks.hardware.feature.irisfeature-service
+    interface vendor.pixelworks.hardware.feature@1.0::IIrisFeature default
+    class hal
+    user system
+    group graphics drmrpc
+    oneshot
+    disabled
